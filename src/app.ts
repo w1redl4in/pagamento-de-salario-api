@@ -10,6 +10,7 @@ import express, {
   Response,
 } from 'express';
 import { ErrorHandler } from 'express-handler-errors';
+import 'reflect-metadata';
 
 class App {
   public readonly app: Application;
