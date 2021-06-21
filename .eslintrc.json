@@ -6,8 +6,7 @@
     "extends": [
         "airbnb-base",
         "plugin:@typescript-eslint/recommended",
-        "prettier",
-        "prettier/@typescript-eslint"
+        "prettier"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -20,6 +19,7 @@
         "eslint-plugin-import-helpers"
     ],
     "rules": {
+      "import/prefer-default-export": "off"
     },
     "settings": {
         "import/resolver": {
