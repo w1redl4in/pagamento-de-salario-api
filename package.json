@@ -7,6 +7,7 @@
     "start:dev": "NODE_ENV=dev ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/server.ts"
   },
   "devDependencies": {
+    "@types/mongodb": "^3.6.18",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "@typescript-eslint/parser": "^4.28.0",
     "eslint": "^7.29.0",
@@ -43,9 +44,12 @@
     "express-async-errors": "^3.1.1",
     "express-handler-errors": "^2.3.1",
     "express-request-id": "^1.4.1",
+    "mongodb": "^3.6.9",
     "morgan-body": "^2.6.5",
+    "reflect-metadata": "^0.1.13",
     "ts-node-dev": "^1.1.6",
     "tsconfig-paths": "^3.9.0",
+    "typeorm": "^0.2.34",
     "winston": "^3.3.3"
   }
 }
