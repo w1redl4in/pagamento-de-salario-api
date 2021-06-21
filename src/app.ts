@@ -40,7 +40,7 @@ class App {
     };
 
     const setRequestId: RequestHandler = (
-      req: any,
+      req: Request,
       _: Response,
       next: NextFunction
     ) => {
