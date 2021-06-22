@@ -20,7 +20,8 @@
     ],
     "rules": {
       "import/prefer-default-export": "off",
-      "global-require": "off"
+      "global-require": "off",
+      "no-shadow": "off"
     },
     "settings": {
         "import/resolver": {
