@@ -11,8 +11,9 @@ import express, {
 } from 'express';
 import { ErrorHandler } from 'express-handler-errors';
 import 'reflect-metadata';
-import 'express-async-errors';
+
 import routes from './routes';
+
 class App {
   public readonly app: Application;
 
@@ -22,13 +23,13 @@ class App {
     this.app = express();
     this.session = createNamespace('session');
     this.middlewares();
+    this.routes();
     this.errorHandle();
   }
 
   private middlewares(): void {
     this.app.use(express.json());
     this.app.use(cors());
-    this.app.use(routes);
 
     const reqId = require('express-request-id');
 
@@ -69,6 +70,10 @@ class App {
         new ErrorHandler().handle(err, res, next, logger as any);
       }
     );
+  }
+
+  private routes(): void {
+    this.app.use('/validator', routes);
   }
 }
 
