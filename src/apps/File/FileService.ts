@@ -14,11 +14,9 @@ class FileService {
 
   async create(file: File): Promise<File> {
     try {
-      console.log('request');
       const response = await this.repository.save(file);
       return response;
     } catch (error) {
-      console.log('error do q', error);
       if (error.code === 11000)
         throw new CustomError({
           code: 'FILE_ALREADY_EXISTS',
