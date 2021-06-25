@@ -1,3 +1,4 @@
+import { ObjectID } from 'bson';
 import {
   BaseEntity,
   Column,
@@ -8,7 +9,7 @@ import {
 } from 'typeorm';
 
 export enum fileStatusEnum {
-  UNCREATED = 'UNCREATED',
+  UNPARSED = 'UNPARSED',
   PARSED = 'PARSED',
   CEP_VALIDATED = 'CEP_VALIDATED',
   CEP_VALIDATED_WITH_ERRORS = 'CEP_VALIDATED_WITH_ERRORS',
@@ -17,24 +18,25 @@ export enum fileStatusEnum {
   FINISHED = 'FINISHED',
 }
 
+export type FileItem = {
+  document: string;
+  name: string;
+  cep: string;
+  email: string;
+};
+
 @Entity()
 export class File extends BaseEntity {
   @ObjectIdColumn({
     type: 'uuid',
   })
-  _id!: string;
+  _id!: ObjectID;
 
   @Column()
-  name!: string;
+  rawFile!: string;
 
   @Column()
-  email!: string;
-
-  @Column()
-  cep!: string;
-
-  @Column()
-  document!: string;
+  items?: FileItem[];
 
   @CreateDateColumn({
     type: 'timestamp',
@@ -50,7 +52,7 @@ export class File extends BaseEntity {
   @Column({
     type: 'enum',
     enum: fileStatusEnum,
-    default: fileStatusEnum.UNCREATED,
+    default: fileStatusEnum.UNPARSED,
   })
   fileStatus!: fileStatusEnum;
 }
