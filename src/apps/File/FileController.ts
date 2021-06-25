@@ -6,6 +6,6 @@ export const create = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const response = await FileService.create(req.body);
+  const response = await FileService.create(req.file!);
   return res.json(response);
 };
