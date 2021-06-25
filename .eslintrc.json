@@ -30,7 +30,8 @@
       "global-require": "off",
       "no-shadow": "off",
       "@typescript-eslint/no-var-requires": "off",
-      "class-methods-use-this": "off"
+      "class-methods-use-this": "off",
+      "no-underscore-dangle": "off"
     },
     "settings": {
         "import/resolver": {
