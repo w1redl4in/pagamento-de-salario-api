@@ -31,7 +31,10 @@
       "no-shadow": "off",
       "@typescript-eslint/no-var-requires": "off",
       "class-methods-use-this": "off",
-      "no-underscore-dangle": "off"
+      "no-underscore-dangle": "off",
+      "@typescript-eslint/ban-types": "off",
+      "import/no-dynamic-require": "off"
+
     },
     "settings": {
         "import/resolver": {
