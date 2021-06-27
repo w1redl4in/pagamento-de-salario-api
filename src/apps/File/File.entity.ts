@@ -18,11 +18,18 @@ export enum fileStatusEnum {
   FINISHED = 'FINISHED',
 }
 
+export enum fileItemStatusEnum {
+  OK = 'OK',
+  NOK = 'NOK',
+}
+
 export type FileItem = {
   document: string;
   name: string;
   cep: string;
   email: string;
+  amount: number;
+  status: fileItemStatusEnum;
 };
 
 @Entity()
