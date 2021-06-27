@@ -10,6 +10,15 @@ export const server = {
   env: process.env.NODE_ENV,
 };
 
+export const rabbit = {
+  host: String(process.env.RABBIT_HOST),
+  protocol: String(process.env.RABBIT_PROTOCOL),
+  port: Number(process.env.RABBIT_PORT),
+  user: String(process.env.RABBIT_USER),
+  password: String(process.env.RABBIT_PASSWORD),
+  validator_document_queue: String(process.env.RABBIT_VALIDATOR_DOCUMENT_QUEUE),
+};
+
 export const dbConnections = {
   mongo: {
     name: 'mongo',
