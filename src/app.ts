@@ -13,6 +13,7 @@ import { ErrorHandler } from 'express-handler-errors';
 import 'reflect-metadata';
 
 import routes from './routes';
+import swaggerRoutes from './swagger.routes';
 
 class App {
   public readonly app: Application;
@@ -23,6 +24,7 @@ class App {
     this.app = express();
     this.session = createNamespace('session');
     this.middlewares();
+    this.configSwagger();
     this.routes();
     this.errorHandle();
   }
@@ -74,6 +76,11 @@ class App {
 
   private routes(): void {
     this.app.use('/validator', routes);
+  }
+
+  private async configSwagger(): Promise<void> {
+    const swagger = await swaggerRoutes.load();
+    this.app.use(swagger);
   }
 }
 
