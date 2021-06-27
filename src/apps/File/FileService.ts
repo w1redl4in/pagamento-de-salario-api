@@ -3,7 +3,7 @@ import { CustomError } from 'express-handler-errors';
 import { getConnection, MongoRepository } from 'typeorm';
 import { ObjectId } from 'bson';
 import { RabbitPublisher } from 'src/services/RabbitPublisher';
-import { File, fileStatusEnum } from './File.entity';
+import { File, fileItemStatusEnum, fileStatusEnum } from './File.entity';
 
 class FileService {
   private readonly repository: MongoRepository<File>;
@@ -21,10 +21,10 @@ class FileService {
     _id: ObjectId
   ): Promise<void> {
     try {
-      const array = file.buffer.toString().split(/\n/);
-      const line = array.map((item) => item.split(';'));
+      const entireFileInArray = file.buffer.toString().split(/\n/);
+      const eachLine = entireFileInArray.map((line) => line.split(';'));
 
-      line.map(async (l) => {
+      eachLine.map(async (l) => {
         await this.publisher.publishOnQueue(
           rabbit.validator_document_queue,
           JSON.stringify(l)
@@ -33,11 +33,27 @@ class FileService {
         await this.repository.save({
           _id,
           fileStatus: fileStatusEnum.PARSED,
-          items: line.map((i: string[]) => ({
-            document: i[0],
-            name: i[1],
-            cep: i[2],
-            email: i[3],
+          items: eachLine.map((item: string[]) => ({
+            document: {
+              value: item[0],
+              status: fileItemStatusEnum.NOK,
+            },
+            name: {
+              value: item[1],
+              status: fileItemStatusEnum.NOK,
+            },
+            cep: {
+              value: item[2],
+              status: fileItemStatusEnum.NOK,
+            },
+            email: {
+              value: item[3],
+              status: fileItemStatusEnum.NOK,
+            },
+            amount: {
+              value: Number(item[4]),
+              status: fileItemStatusEnum.NOK,
+            },
           })),
         });
       });

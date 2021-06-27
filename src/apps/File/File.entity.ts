@@ -24,12 +24,26 @@ export enum fileItemStatusEnum {
 }
 
 export type FileItem = {
-  document: string;
-  name: string;
-  cep: string;
-  email: string;
-  amount: number;
-  status: fileItemStatusEnum;
+  document: {
+    value: string;
+    status: fileItemStatusEnum;
+  };
+  name: {
+    value: string;
+    status: fileItemStatusEnum;
+  };
+  cep: {
+    value: string;
+    status: fileItemStatusEnum;
+  };
+  email: {
+    value: string;
+    status: fileItemStatusEnum;
+  };
+  amount: {
+    value: number;
+    status: fileItemStatusEnum;
+  };
 };
 
 @Entity()
