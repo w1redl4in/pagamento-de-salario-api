@@ -35,6 +35,9 @@
       "@middlewares/*": [
         "./src/middlewares/*"
       ],
+      "@services/*": [
+        "./src/services/*"
+      ],
       "@tools/*": [
         "./src/tools/*"
       ]
